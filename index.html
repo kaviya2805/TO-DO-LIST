@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Cute To-Do List ✨</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+            position: relative;
+        }
+        h2 {
+            font-size: 24px;
+            color: #ff66b2;
+        }
+        input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ff66b2;
+            border-radius: 20px;
+            outline: none;
+            text-align: center;
+        }
+        button {
+            background: #ff66b2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #ff3385;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        li {
+            background: #ffe6f2;
+            margin: 8px 0;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        li:hover {
+            transform: scale(1.05);
+        }
+        .delete {
+            background: #ff3385;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .delete:hover {
+            background: #cc0052;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+        .emoji {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="emoji">📝✨ My Cute To-Do List ✨🐰</h1>
+    <div class="container">
+        <h2>🌸 Stay Organized 🌸</h2>
+        <input type="text" id="task" placeholder="Add something cute... ✨">
+        <button onclick="addTask()">➕ Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        function addTask() {
+            let taskInput = document.getElementById("task");
+            let taskValue = taskInput.value.trim();
+            if (taskValue === "") return;
+            
+            let li = document.createElement("li");
+            li.innerHTML = `<span onclick="toggleComplete(this)">🌸 ${taskValue}</span> <button class="delete" onclick="removeTask(this)">❌</button>`;
+            document.getElementById("taskList").appendChild(li);
+            
+            taskInput.value = "";
+        }
+
+        function removeTask(element) {
+            element.parentElement.remove();
+        }
+
+        function toggleComplete(element) {
+            element.classList.toggle("completed");
+        }
+    </script>
+</body>
+</html>
